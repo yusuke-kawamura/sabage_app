@@ -113,3 +113,12 @@ input {
     color: $state-danger-text;
   }
 }
+
+/*ユーザー情報表示*/
+aside {
+  section.user_info {
+    width: 100%;
+    margin-bottom: 15px;
+    @include box_sizing;
+  }
+}

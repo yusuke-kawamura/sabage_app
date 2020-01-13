@@ -17,8 +17,10 @@
       <%= f.label :活動地域（未入力可） %>
       <%= f.text_field :Activity_area, class: 'form-control' %>
       
-      <%= f.label :好きな武器（未入力可） %>
+      <%= f.label :好きな銃（未入力可） %>
       <%= f.text_field :like_weapon, class: 'form-control' %>
+      
+      <%= f.file_field :image %>
       
       <%= f.submit "ユーザー登録", class: "btn btn-primary" %>
       <h2>登録した内容はあとで変更が可能です</h2>

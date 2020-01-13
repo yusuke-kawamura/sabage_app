@@ -22,6 +22,6 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:name, :password, :password_confirmation,
-                                  :Activity_area, :like_weapon)
+                                  :Activity_area, :like_weapon, :image)
   end
 end
