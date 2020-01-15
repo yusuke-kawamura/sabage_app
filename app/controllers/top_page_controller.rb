@@ -1,4 +1,3 @@
-
 class TopPageController < ApplicationController
   def home
   end
