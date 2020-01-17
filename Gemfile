@@ -36,7 +36,6 @@ end
 
 group :production do
   gem 'pg', '1.2.2'
-  gem 'fog-aws'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
