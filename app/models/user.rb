@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   mount_uploader :image, ImageUploader
-  validates :name, presence: true, length: { maximum: 30 }
+  validates :name, presence: true, length: { maximum: 30 }, uniqueness: true
   has_secure_password
   validates :password, length: { minimum: 6 }, allow_nil: true
   validates :activity_area, length: { maximum: 30 }
