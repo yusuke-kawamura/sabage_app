@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      log_in @user
       redirect_to @user, success: "登録が完了しました！楽しんでくださいね！"
     else
       render 'new'
