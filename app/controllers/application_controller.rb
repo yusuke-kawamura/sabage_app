@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   add_flash_types  :success, :info, :warning, :danger
   
-  helper_method :current_user, :logged_in?, :log_in, :log_out
-  
+  helper_method :current_user, :logged_in?
   
 #ログイン関連
   #ログインする
@@ -19,7 +18,7 @@ class ApplicationController < ActionController::Base
   
   #ログインしているか確認
   def logged_in?
-    !current_user.nil?
+    current_user.present?
   end
   
   #ログアウト
