@@ -25,10 +25,10 @@ class ApplicationController < ActionController::Base
   
   # #現在のユーザー(永続的か一時的なログインか確認し返す)
   def current_user
-    if (user_id = session[:user_id])
-      @current_user ||= User.find_by(id: user_id)
-    elsif (user_id = cookies.signed[:user_id])
-      user = User.find_by(id: user_id)
+    if session[:user_id]
+      @current_user ||= User.find_by(id: session[:user_id])
+    elsif cookies.signed[:user_id]
+      user = User.find_by(id: cookies.signed[:user_id])
       if user&.authenticated?(cookies[:remember_token])
         log_in user
         @current_user = user

@@ -7,15 +7,16 @@ class User < ApplicationRecord
   validates :activity_area, length: { maximum: 30 }
   validates :like_weapon, length: { maximum: 50 }
   
-  def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
-  end
-
-  #ランダムなトークンを返す
-  def User.new_token
-    SecureRandom.urlsafe_base64
+  class << self
+    def User.digest(token)
+      ActiveModel::SecurePassword.min_cost = Rails.env.test?
+      BCrypt::Password.create(token, cost: cost)
+    end
+  
+    #ランダムなトークンを返す
+    def User.new_token
+      SecureRandom.urlsafe_base64
+    end
   end
   
   #永続的にユーザーをDBに保存する
@@ -25,9 +26,9 @@ class User < ApplicationRecord
   end
 
   #トークンとダイジェストが一致するか確認
-  def authenticated?(remember_token)
+  def authenticated?(token)
     return false if remember_digest.nil?
-    BCrypt::password.new(remember_digest).is_password?(remember_token)
+    BCrypt::password.new(digest).is_password?(token)
   end
   
   #ユーザーのログイン情報を破棄する
