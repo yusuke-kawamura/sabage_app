@@ -8,13 +8,12 @@ class User < ApplicationRecord
   validates :like_weapon, length: { maximum: 50 }
   
   class << self
-    def User.digest(token)
-      ActiveModel::SecurePassword.min_cost = Rails.env.test?
-      BCrypt::Password.create(token, cost: cost)
+    def digest(token)
+      BCrypt::Password.create(token, cost: BCrypt::Engine.cost)
     end
   
     #ランダムなトークンを返す
-    def User.new_token
+    def new_token
       SecureRandom.urlsafe_base64
     end
   end
