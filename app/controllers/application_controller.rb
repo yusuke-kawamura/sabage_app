@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
+  skip_before_action :logged_in_user, only: [:new, :create, :show], raise: false
   add_flash_types  :success, :info, :warning, :danger
-  
   helper_method :current_user, :logged_in?, :current_user?
   
 #ログイン関連
