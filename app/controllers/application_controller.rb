@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  skip_before_action :logged_in_user, only: [:new, :create, :show], raise: false
+  before_action :logged_in_user
   add_flash_types  :success, :info, :warning, :danger
   helper_method :current_user, :logged_in?, :current_user?
   
@@ -51,5 +51,12 @@ class ApplicationController < ActionController::Base
   #ログイン済みのユーザーか確認する
   def current_user?(user)
     user == current_user
+  end
+  
+  #ログインしているか確認し、していなければログイン画面を返す
+  def logged_in_user
+    unless logged_in?
+      redirect_to login_url, danger: "ログインしてください"
+    end
   end
 end

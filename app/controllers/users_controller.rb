@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :logged_in_user, only: [:show, :new, :create]
   
   def show
     @user = User.find(params[:id])
@@ -23,9 +24,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
+    current_user
     if current_user.update(user_params)
-      redirect_to @user, success: "プロフィールを更新しました"
+      redirect_to current_user, success: "プロフィールを更新しました"
     else
       render 'edit'
     end
@@ -36,12 +37,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :password, :password_confirmation,
                                   :activity_area, :like_weapon, :image)
-  end
-  
-  #ログインしているか確認
-  def logged_in_user
-    unless logged_in?
-      redirect_to login_url, danger: "ログインしてください"
-    end
   end
 end
