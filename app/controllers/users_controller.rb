@@ -20,11 +20,10 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = current_user
+    current_user
   end
 
   def update
-    current_user
     if current_user.update(user_params)
       redirect_to current_user, success: "プロフィールを更新しました"
     else
