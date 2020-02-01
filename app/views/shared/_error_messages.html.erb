@@ -1,10 +1,10 @@
-<% if current_user.errors.present? %>
+<% if user.errors.present? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
-      入力に誤りがあります <%= pluralize(current_user.errors.count, "エラー") %>.
+      入力に誤りがあります <%= pluralize(user.errors.count, "エラー") %>.
     </div>
     <ul>
-    <% current_user.errors.full_messages.each do |msg| %>
+    <% user.errors.full_messages.each do |msg| %>
       <li><%=msg %></li>
       <% end %>
     </ul>
