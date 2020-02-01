@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
-  skip_before_action :logged_in_user, only: [:show, :new, :create]
+  skip_before_action :logged_in_user, only: [:show, :index, :new, :create]
   
   def show
     @user = User.find(params[:id])
+  end
+  
+  def index
+    @users = User.all
+    @users = User.page(params[:page]).per(20)
   end
   
   def new
