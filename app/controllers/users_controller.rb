@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = current_user
+    current_user
   end
 
   def update
