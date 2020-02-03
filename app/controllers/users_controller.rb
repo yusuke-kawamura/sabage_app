@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :logged_in_user, only: [:show, :index, :new, :create]
+  skip_before_action :logged_in_user, only: [:show, :new, :create]
   
   def show
     @user = User.find(params[:id])
@@ -25,7 +25,6 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = current_user
   end
 
   def update
