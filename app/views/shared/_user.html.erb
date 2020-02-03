@@ -1,6 +1,5 @@
-<%= form_for(@user, url: yield(:url)) do |f| %>
-  <%= render 'shared/error_messages', user: @user %>
-      
+<%= form_with(model: user, url: url, local: true) do |f| %>
+
   <%= f.label :ユーザー名 %>
   <%= f.text_field :name, class: 'form-control' %>
             
@@ -16,9 +15,9 @@
   <%= f.label :好きな銃 %>
   <%= f.text_field :like_weapon, class: 'form-control' %>
       
-  <% if user.image? %>
+<% if user.image? %>
   <%= image_tag user.image.url %>
-  <% end %> 
+<% end %> 
   <%= f.file_field :image %>
   <%= f.submit "保存", class: "btn btn-primary" %>
 <% end %>
