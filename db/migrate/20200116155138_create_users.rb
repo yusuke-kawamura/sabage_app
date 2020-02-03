@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.text :like_weapon
       t.string :image
       t.string :remember_digest
+      t.boolean :admin
 
       t.timestamps
     end
