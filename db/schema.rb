@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_22_141450) do
+ActiveRecord::Schema.define(version: 2020_01_16_155138) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 2020_01_22_141450) do
     t.text "activity_area"
     t.text "like_weapon"
     t.string "image"
+    t.string "remember_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "remember_digest"
   end
 
 end

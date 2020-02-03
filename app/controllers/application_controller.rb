@@ -56,19 +56,7 @@ class ApplicationController < ActionController::Base
   #ログインしているか確認し、していなければログイン画面を返す
   def logged_in_user
     unless logged_in?
-      store_location
       redirect_to login_url, danger: "ログインしてください"
     end
   end
-  
- #記憶したURLにリダイレクト
- def redirect_back_or(default)
-   redirect_to(session[:forwarding_url] || default)
-   session.delete(:forwarding_url)
- end
- 
- #アクセスしようとしたURLを記憶する
- def store_location
-   session[:forwarding_url] = request.original_url if request.get?
- end
 end
