@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
+  before_action :logged_in_user
   add_flash_types  :success, :info, :warning, :danger
-  
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :current_user?
   
 #ログイン関連
   #ログインする
@@ -46,5 +46,17 @@ class ApplicationController < ActionController::Base
     forget(current_user)
     session.delete(:user_id)
     @current_user = nil
+  end
+  
+  #ログイン済みのユーザーか確認する
+  def current_user?(user)
+    user == current_user
+  end
+  
+  #ログインしているか確認し、していなければログイン画面を返す
+  def logged_in_user
+    unless logged_in?
+      redirect_to login_url, danger: "ログインしてください"
+    end
   end
 end
