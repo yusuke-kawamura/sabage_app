@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_155138) do
+ActiveRecord::Schema.define(version: 2020_02_04_030852) do
+
+  create_table "groups", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -19,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_01_16_155138) do
     t.text "like_weapon"
     t.string "image"
     t.string "remember_digest"
+    t.boolean "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
