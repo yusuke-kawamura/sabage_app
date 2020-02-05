@@ -21,9 +21,18 @@ class GroupsController < ApplicationController
     end
   end
   
+  def edit
+  end
+  
+  def update
+  end
+  
+  def destroy
+  end
+  
   private
   
   def group_params
-    params.require(:group).permit(:name)
+    params.require(:group).permit(:name, :free)
   end
 end
