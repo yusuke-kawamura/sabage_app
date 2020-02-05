@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root   'top_page#home'
-  root 'groups#index'
   get   '/signup',   to: 'users#new'
   post  '/signup',   to: 'users#create'
   
@@ -9,5 +8,5 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resource   :users,  only: [:edit, :update, :destroy]
   resources  :users,  only: [:show, :index]
-  resources  :groups, only: [:new, :create, :edit, :update]
+  resources  :groups
 end
