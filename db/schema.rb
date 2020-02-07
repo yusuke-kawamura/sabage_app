@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_02_04_051333) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name", null: false
-    t.text "free"
+    t.text "group_about"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
