@@ -1,0 +1,9 @@
+<%= form_with model: @group, local: true do |f| %>
+<%= render 'shared/error_messages', model: f.object %>
+  <%= f.label :グループ名 %>
+  <%= f.text_field :name, class: 'form-control' %>
+      
+  <%= f.label :概要記入欄 %>
+  <%= f.text_area :description,  class: 'form-control' %>
+  <%= f.submit "保存", class: "btn btn-primary" %>
+<% end %>
