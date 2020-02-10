@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  skip_before_action :group_user, only: [:new, :create, :show, :index]
   
   def show
      @group = Group.find(params[:id])
@@ -9,7 +10,7 @@ class GroupsController < ApplicationController
   end
   
   def new
-    @group = Group.new
+    @group = current_user.groups.build
   end
   
   def create
@@ -26,7 +27,7 @@ class GroupsController < ApplicationController
   end
   
   def update
-    @group = Group.find(params[:id])
+    @group = current_user.groups
     if @group.update(group_params)
       redirect_to group_path, success: "プロフィールを更新しました"
     else
