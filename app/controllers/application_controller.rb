@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :logged_in_user
-  before_action :group_user
   add_flash_types  :success, :info, :warning, :danger
-  helper_method :current_user, :logged_in?, :current_user?, :group_user
+  helper_method :current_user, :logged_in?, :current_user?
   
 #ログイン関連
   #ログインする
@@ -58,13 +57,6 @@ class ApplicationController < ActionController::Base
   def logged_in_user
     unless logged_in?
       redirect_to login_url, danger: "ログインしてください"
-    end
-  end
-  
-    #グループの製作者か確認し、違うければグループ一覧に戻す
-  def group_user
-    if current_user.id !=  params[:id].to_i
-      redirect_to groups_path, danger: "編集権限がありません"
     end
   end
 end
