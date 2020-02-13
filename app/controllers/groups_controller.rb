@@ -13,9 +13,10 @@ class GroupsController < ApplicationController
   end
   
   def create
-    @group = current_user.groups.create(group_params)
+    @group  = current_user.groups.build(group_params)
     if @group.save
-       redirect_to @group, success: "グループを作成しました"
+      @group.users << current_user
+      redirect_to @group, success: "グループを作成しました"
     else
       render "new"
     end
