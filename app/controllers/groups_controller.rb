@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_action :group_join, only: [:show]
   
   def show
      @group = Group.find(params[:id])
@@ -40,4 +41,13 @@ class GroupsController < ApplicationController
   def group_params
     params.require(:group).permit(:name, :description)
   end
+  
+  def group_join
+    @group = Group.find(params[:id])
+    unless @group.users.exists?(current_user.id)
+      @group.users << current_user
+      flash.now[:success] = "グループに参加しました"
+    end
+  end
+
 end
