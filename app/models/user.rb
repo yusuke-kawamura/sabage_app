@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :group_users
   has_many :groups, through: :group_users
+  has_many :groups, foreign_key: 'group_creator_id'
   attr_accessor :remember_token
   mount_uploader :image, ImageUploader
   validates :name, presence: true, length: { maximum: 30 }, uniqueness: true
